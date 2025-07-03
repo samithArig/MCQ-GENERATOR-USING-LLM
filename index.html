@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Smart MCQ Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    :root {
+      --primary-color: #5c6bc0;
+      --secondary-color: #3f51b5;
+      --accent-color: #00c9a7;
+      --bg-gradient: linear-gradient(135deg, #d0e8ff, #fdfbfb);
+      --font-main: 'Poppins', sans-serif;
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: var(--font-main);
+      background: var(--bg-gradient);
+      animation: bgPulse 20s ease infinite;
+      background-size: 300% 300%;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      touch-action: manipulation;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .bg-lottie {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .floating-badge {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 20px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      animation: popIn 1s ease forwards;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.9) translateY(-10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .main-section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 60px 40px;
+      max-width: 720px;
+      width: 100%;
+      animation: floatIn 1.2s ease-out;
+      position: relative;
+    }
+
+    .glass-card::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-color);
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      border-radius: 12px;
+      font-size: 1rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.25);
+      border-color: var(--primary-color);
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border: none;
+      padding: 12px 18px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: #444;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 576px) {
+      .glass-card {
+        padding: 30px 20px;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      .form-control {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-lottie">
+    <lottie-player
+      src="https://lottie.host/4a4f2c63-0895-4f1f-b13a-92f5f1cb8f62/T2LtgbFZ5c.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay
+      style="width: 100%; height: 100%;">
+    </lottie-player>
+  </div>
+
+  <!-- Floating Badge -->
+  <div class="floating-badge">
+    🧠 Smart AI-Powered MCQ Generator
+  </div>
+
+  <!-- Main Content -->
+  <section class="main-section">
+    <div class="glass-card">
+      <h2>Upload Your Document to Generate MCQs</h2>
+      <form method="POST" action="/generate" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="file" class="form-label">Choose a File (PDF, DOCX, or TXT):</label>
+          <input class="form-control" type="file" name="file" id="file" required />
+        </div>
+        <div class="mb-3">
+          <label for="num_questions" class="form-label">Number of Questions:</label>
+          <input class="form-control" type="number" name="num_questions" id="num_questions" min="1" max="50" value="5" required />
+        </div>
+        <button class="btn btn-primary w-100" type="submit">Generate MCQs</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    Made with ❤️ using LLMs | <a href="/">Generate Another</a>
+  </footer>
+</body>
+</html>
